@@ -10,7 +10,7 @@ def main():
     tello = Tello()
     tello.connect()
 
-    vk_session = vk_api.VkApi(token='c00b07592783dda8b7cad33619b111a7577f3f9502b5173992631b24d915ac622c895a651df4ede2c0ded')
+    vk_session = vk_api.VkApi(token='TOKEN')
     vk = vk_session.get_api()
 
     letsgo = VkKeyboard(one_time=True)
