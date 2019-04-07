@@ -4,6 +4,7 @@ import vk_api
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from vk_api.longpoll import VkLongPoll, VkEventType
 
+
 def main():
     tello = Tello()
     tello.connect()
@@ -45,13 +46,12 @@ def main():
     flip_keyboard.add_line()
     flip_keyboard.add_button('Вернуться в меню управления', color=VkKeyboardColor.NEGATIVE)
 
-    glmenu_keyboard = VkKeyboard(one_time = True)
-    glmenu_keyboard.add_button('Начать', color=VkKeyboardColor.DEFAULT)
-    glmenu_keyboard.add_line()
-    glmenu_keyboard.add_button('Конец работы', color=VkKeyboardColor.DEFAULT)
+    mainmenu_keyboard = VkKeyboard(one_time=True)
+    mainmenu_keyboard.add_button('Начать', color=VkKeyboardColor.DEFAULT)
+    mainmenu_keyboard.add_line()
+    mainmenu_keyboard.add_button('Конец работы', color=VkKeyboardColor.DEFAULT)
 
     longpoll = VkLongPoll(vk_session)
-
 
     for event in longpoll.listen():
         if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:
@@ -83,7 +83,7 @@ def main():
             if event.text.lower() == 'посадка':
                 vk.messages.send(  # Отправляем сообщение
                     user_id=event.user_id,
-                    keyboard=glmenu_keyboard.get_keyboard(),
+                    keyboard=mainmenu_keyboard.get_keyboard(),
                     message='Посадка'
                 )
                 tello.land()
@@ -125,7 +125,7 @@ def main():
                 vk.messages.send(  # Отправляем сообщение
                     user_id=event.user_id,
                     keyboard=keyboard.get_keyboard(),
-                    message = 'Заряд баттареи ' + x
+                    message='Заряд баттареи ' + x
                 )
                 print('Проверка')
             if event.text.lower() == 'вверх':
@@ -190,7 +190,7 @@ def main():
                             user_id=event.user_id,
                             keyboard=flip_keyboard.get_keyboard(),
                             message='Заряд баттареи ' + x + 'Флип доступен'
-                    )
+                        )
                     else:
                         vk.messages.send(
                             user_id=event.user_id,
