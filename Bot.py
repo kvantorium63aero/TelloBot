@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from djitellopy import Tello
-import cv2
-import time
 import vk_api
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from vk_api.longpoll import VkLongPoll, VkEventType
